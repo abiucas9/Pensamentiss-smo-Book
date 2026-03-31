@@ -1,59 +1,324 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Mini App</title>
-  <style>
-    body {
-      background: #0f172a;
-      color: #e5e7eb;
-      font-family: Arial;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .card {
-      background: #020617;
-      padding: 20px;
-      border-radius: 12px;
-      width: 300px;
-      box-shadow: 0 0 20px #38bdf8;
-    }
-    button {
-      background: #38bdf8;
-      border: none;
-      padding: 8px;
-      width: 100%;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-
-<div class="card">
-  <h2 id="msg">Carregando...</h2>
-  <button onclick="somar()">Somar 2 + 3</button>
-  <p id="res"></p>
-</div>
-
-<script>
-fetch("http://127.0.0.1:8000/")
-  .then(r => r.json())
-  .then(d => {
-    document.getElementById("msg").innerText = d.msg
-  })
-
-function somar() {
-  fetch("http://127.0.0.1:8000/api/soma?a=2&b=3")
-    .then(r => r.json())
-    .then(d => {
-      document.getElementById("res").innerText =
-        "Resultado: " + d.resultado
-    })
+<!doctype html>
+<html lang="pt-BR">  
+<head>  
+  <meta charset="utf-8" />  
+  <meta name="viewport" content="width=device-width,initial-scale=1" />  
+  <title>Penssamentissísmo</title>  
+	<link href="https://fonts.googleapis.com/css2?family=Almendra&display=swap" rel="stylesheet">
+<style>  
+body {
+    background-color: #222222; 
+color: #cccccc; 
 }
-</script>
+  .antimateus-book {  
+    background-color: #1a1a1a;  
+    color: #e0e0e0;  
+    padding: 35px;  
+    border-left: 5px solid #d4af37;  
+    font-family: 'Georgia', serif;  
+    line-height: 1.8;  
+    border-radius: 0 15px 15px 0;  
+    box-shadow: 10px 10px 25px rgba(0,0,0,0.6);  
+    margin: 30px auto;  
+    max-width: 850px;  
+  }  .antimateus-book h2 {
+color: #d4af37;
+text-transform: uppercase;
+letter-spacing: 4px;
+border-bottom: 1px solid #333;
+padding-bottom: 15px;
+text-align: center;
+font-size: 1.5em;
+}
 
-</body>
-</html>
+.antimateus-book p {
+margin-bottom: 18px;
+text-align: justify;
+font-size: 1.1em;
+}
+
+.book-label {
+font-weight: bold;
+text-align: center;
+display: block;
+margin-top: 30px;
+color: #888;
+font-size: 0.95em;
+letter-spacing: 1px;
+text-transform: uppercase;
+}
+.antilucas-book {  
+    background-color: #0f111a;  
+    color: #cbd5e0;  
+    padding: 40px;  
+    border-top: 3px solid #4a5568;  
+    border-bottom: 3px solid #4a5568;  
+    font-family: 'Times New Roman', serif;  
+    line-height: 1.6;  
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.8);  
+    margin: 30px auto;  
+    max-width: 850px;  
+    position: relative;  
+  }  .antilucas-book h2 {
+color: #a0aec0;
+text-transform: uppercase;
+letter-spacing: 6px;
+text-align: center;
+font-size: 1.4em;
+margin-bottom: 30px;
+}
+
+.antilucas-book p {
+margin-bottom: 20px;
+text-align: justify;
+font-size: 1.15em;
+font-style: italic;
+}
+
+.book-label {
+font-weight: bold;
+text-align: center;
+display: block;
+margin-top: 40px;
+color: #4a5568;
+font-size: 0.85em;
+letter-spacing: 3px;
+text-transform: uppercase;
+border-top: 1px dashed #2d3748;
+padding-top: 10px;
+}
+  .sagrado-v2-book {  
+    background-color: #ffffff;  
+    color: #1a365d; /* Azul marinho para representar o céu/ciência */  
+    padding: 45px;  
+    border: 1px solid #e2e8f0;  
+    border-left: 10px solid #d4af37; /* Faixa dourada lateral */  
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
+    line-height: 1.7;  
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.05);  
+    margin: 35px auto;  
+    max-width: 850px;  
+    position: relative;  
+  }  .sagrado-v2-book h2 {
+color: #d4af37;
+text-transform: uppercase;
+letter-spacing: 3px;
+font-size: 1.3em;
+margin-bottom: 25px;
+border-bottom: 1px solid #f0f0f0;
+padding-bottom: 10px;
+}
+
+.sagrado-v2-book p {
+margin-bottom: 20px;
+text-align: justify;
+font-size: 1.1em;
+}
+
+.book-label-sagrado {
+font-weight: bold;
+text-align: center;
+display: block;
+margin-top: 30px;
+color: #cbd5e0;
+font-size: 0.9em;
+letter-spacing: 5px;
+text-transform: uppercase;
+}
+</style>
+<body>
+    <div class="prog-wrap"><div id="prog" class="prog"></div></div>    <header class="hero" id="top">  
+    <div class="title">  
+      <h1 class="titulo">Penssamentissísmo-book</h1>  
+      <p style="font-family: 'Creepster', cursive;" class="subtitulo">12+, contem critica, palavroes e satira, contem trechos poeticos e nao reais como "o universo falar" ou "o barro falar", contem ciência E visão pessoal do autor, contem afirmações.</p>
+		<br><p>autor: Lucas Gabriel h.</p>
+		<br><p style="font-family: 'Creepster', cursive;">para quem escolhe a liberdade de pensar.</p>
+		<p style="font-family: 'Creepster', cursive;">Antilucas 4:7 "ciência acima da crença, razão antes da superstição."</p>
+    </div>  <div class="counters" aria-live="polite">  
+    
+    <h1 style="margin:60px 0 30px; font-family: 'Georgia', serif; text-align: center; color: #f0f0f0; text-transform: uppercase; letter-spacing: 8px; border-top: 1px solid #050505; border-bottom: 1px solid #050505; padding: 15px;">  
+  Livro: Antimateus  
+</h1>  
+
+<div class="antimateus-book">  
+  <h2>CAPÍTULO 1 - INTRODUÇÃO</h2>    <p>  
+    1. E disse Matheus: "Há quem tenha fé sem razão, e razão sem fé — mas o equilíbrio dessa confusão é o que move o pensamento humano".   
+    2. Pois a razão observa o universo, e a fé observa o que não pode ser visto — mas ambas nascem da mesma inquietação.   
+    3. "A dúvida não é fraqueza," escreveu ele, "mas o princípio da sabedoria. Pois quem nunca duvida, nunca pensa com olhos próprios".   
+    4. E acrescentou: "Não é pecado questionar o que te disseram ser sagrado. O pecado maior é aceitar sem pensar".   
+    5. Porque a verdade não teme investigação, e o conhecimento não teme o tempo.  
+  </p>    <p class="book-label">Antimateus</p>  
+</div>  
+<div class="antimateus-book">  
+  <h2>CAPÍTULO 2 - DEUS PROVAS</h2>    <p>  
+    1. Argumentos que Deus existe, para provar que Deus não existe o ateu precisa existir. Resposta ateísta racional: "Só porque não dá pra provar algo inexistente, não quer dizer que ele magicamente existe. Tipo, 'prova que não tem um dragão invisível na sua garagem', não dá pra provar mas isso não significa que tenho um dragão lá". Poha eu existo pelo universo, então fadas existem, e enquanto ninguém me provar que não existem, ela existe.   
+    2. A maioria dos cristãos não tem um argumento palpável para provar a existência de Deus.   
+    3. Se Deus não existe quem criou o universo? O próprio universo se criou.   
+    4. O que havia antes do universo? Não tinha "antes", se não tinha tempo não dá pra ter um antes, toda partícula estava concentrada em um lugar e CABUM tudo explodiu, você é o resultado de bilhões de anos.   
+    5. Deus não houve orações então não vai ouvir minhas blasfêmias kkk.   
+    6. Deus não existe, e não faz sentido existir. Se Deus existisse por que ele deixaria crianças morrerem? Ou pessoas que rezam muito e pedem a Deus as coisas deveriam ser melhores de vida. Pra mim Deus é o Papai Noel dos adultos. Todos os deuses cadê?  
+  </p>    <p class="book-label">Antimateus</p>  
+</div>  
+<div class="antimateus-book">  
+<h2>CAPÍTULO 3 - A FÉ E A RAZÃO</h2>  
+​<p>  
+1. A fé é como um truque de mágica: fascinante enquanto você não enxerga os fios.  
+2. A razão é o momento em que você levanta, acende as luzes e percebe que tudo era ilusão.  
+3. Não é preciso atacar quem acredita — basta mostrar o mecanismo.  
+4. Um pensa que o fim está escrito, o outro acredita que a caneta é sua.  
+5. Um canta louvor, o outro estuda equações.  
+6. E no fundo, ambos só querem entender por que estamos aqui.  
+7. Alguns crentes dizem que se estudar te afasta de Deus mas... será que não afasta das mentiras?  
+8. Crentes gritam "Amém" — pensadores respondem "Por quê?".  
+9. A fé espera o milagre, a ciência cria o milagre.  
+10. Quando as crenças se chocam com o conhecimento, nasce a história do mundo.  
+11. Não somos ateus, somos pensadores, filósofos, cientistas e poetas.  
+</p>  
+​<p class="book-label">Antimateus</p>  
+</div>  
+<div class="antimateus-book">  
+<h2>CAPÍTULO 4 - PROBLEMA DO MAL APROFUNDAMENTO</h2>  
+​<p>  
+1. Se Deus existe porque houve o 11 de setembro? Século da informação 8:17.  
+2. Se Deus existe onde ele estava quando os aviões caíram? Ele não é onipresente?  
+3. Onde ele estava quando crianças morreram na guerra? Quando inocentes viraram reféns de ideias?  
+4. Deus deixou o mal existir porque deu liberdade às pessoas. Mas... e doenças? Terremotos? Bebês que sofrem? Eles não escolheram nada.  
+5. Deus não é legal. Eu não sou o diabo, eu não sou anticristo, eu sou ateu sim. Não venha cristãos dizer que não acreditam que sou ateu.  
+6. PQ SOU ATEU? Eu não sofri nada na vida, minha mãe não morreu, meu pai também não, então não é esse o motivo que sou ateu.  
+7. Eu sou ateu porque eu penso, eu estudo física, eu tenho mais de 2 de QI. Eu não sou um idoso preso ao passado.  
+8. Eu não tenho ódio de Deus pois não dá pra ter ódio de algo que não existe. Por isso agora sou livre, tô nem aí pra Satanás ou Jesus, eu faço cruz de ponta cabeça e tô nem aí. Esse bagulho não existe, pq não fui afetado a NADA.  
+9. Eu orei desde meus 5 anos aos 11 e não ganhei NADA. Parei de orar a partir dos meus 12 e eu continuo tendo pesadelo, o café continua ruim e ainda queimo miojo no microondas. Essa poha é falso vê se cresce.  
+</p>  
+​<h3 style="text-align: center; border-top: 1px solid #ccc; padding-top: 10px;">DEUS NÃO EXISTE.</h3>  
+​<p class="book-label">Antimateus</p>  
+</div>  
+<div class="antimateus-book">  
+<h2>CAPÍTULO 5 - ANTISALMOS 23</h2>  
+​<p>  
+1. O mundo é o meu vale da sombra e da morte. A paz me falta, e o caos me guia.  
+2. Deitaram-me em campos de cinza e de ódio. Guiaram meu passo por ruas sem luz, porque "é plano divino", disseram.  
+3. Ainda que eu caminhe meio do fogo cruzado, eu questionarei, pois a justiça é cega e até usa capuz branco. KKK não é só sigla, vi.  
+4. Preparas-me um discurso em nome do amor, mas teus atos gotejam sangue. Unge tua espada com falsa paz enquanto teus irmãos morrem calados. Quem tem fome de poder nunca se sacia.  
+5. Certamente o ódio e a hipocrisia me seguirão todos os dias enquanto o amor se esconde atrás de filtros e hashtags.  
+6. Habitarei no silêncio dos que ousam ver até que quebrem a cruz e queimem o nome que a mancha. Amém.  
+</p>  
+​<p class="book-label">Antimateus</p>  
+</div>  
+<div class="antimateus-book">  
+<h2>CAPÍTULO 6 - ANTISALMOS 91</h2>  
+​<p>  
+1. Aquele que habita no esconderijo da lógica descansará à sombra do pensamento livre, não sob o medo de um deus invisível.  
+2. Direi da razão: ela é meu refúgio e minha fortaleza.  
+3. Pois a mentira religiosa tenta te capturar como armadilha, mas a verdade é ágil como fogo que devora a palha.  
+4. Se teu deus te prometeu proteção, cadê ele no tiroteio? Não temerás o discurso de ódio do fanático, nem a praga das palavras vazias do meio-dia.  
+5. Mil cairão ao teu lado e dez mil à tua direita, mas a dúvida te manterá firme, pois ela é sua arma contra a loucura.  
+6. Nenhum pastor te enganará com versículos fora de contexto, nem o medo vai comandar tua mente, porque tu escolheste pensar.  
+7. Pois a razão dará ordens aos teus passos, para que não tropeces nas histórias que inventaram pra te controlar. Amém.  
+</p>  
+​<p class="book-label">Antimateus</p>  
+</div>  
+<br><br><br>  
+<h1 style="margin:60px 0 30px; font-family: 'Georgia', serif; text-align: center; color: #f0f0f0; text-transform: uppercase; letter-spacing: 8px; border-top: 1px solid #050505; border-bottom: 1px solid #050505; padding: 15px;">  
+  Livro: Antilucas  
+</h1>  
+
+<div class="antilucas-book">  
+  <h2>CAPÍTULO 1 - ANTISALMOS</h2>    <p>  
+    1. Pai Nosso que estais no vácuo, santificada seja a dúvida. Venha a nós o pensamento crítico, seja feita a lógica, na Terra como no Multiverso.   
+    2. O pão nosso de cada dia, conquistamos com ciência. Perdoai nossos erros, assim como nós questionamos os dogmas alheios.   
+    3. E não nos deixeis cair no fanatismo, mas livrai-nos da religião. Porque Teu é o Universo, a Razão e a Humanidade pelos séculos dos séculos. Amém.  
+  </p>    <p>  
+    4. Na minha angústia clamei à Razão, e ela me respondeu com silêncio e possibilidades infinitas.   
+    5. Livra-me, ó Lógica, dos lábios mentirosos e das línguas que falam em nome de deuses inexistentes.   
+    6. Que será dado a ti, ó boca de fé cega? Além do eco das tuas orações? Flechas afiadas de dúvidas serão teu retorno, e brasas de questionamento incendiarão teus altares.  
+  </p>    <p>  
+    7. Ai de mim, que habito entre crentes, que vivem do dogma como se fosse oxigênio.   
+    8. Por tempo demais tenho vivido entre os que amam o sobrenatural e trocam a luz da evidência pela sombra da fé.   
+    9. Sou pela paz, pela ciência e pelo diálogo; mas quando falo, eles pregam, julgam, condenam e ainda acham que é amor.  
+  </p>    <p>  
+    10. Aquele que promete céu e condena a vida não habita aqui. Mil ilusões tentarão me prender, mas da equação e cada lei natural são minhas muralhas.   
+    11. Não espero milagres, não oro por favores e sim questiono. Onde prometem amor, vejo ambição; onde pregam justiça, encontro opressão.   
+    12. Onde todos se ajoelham, eu clamo por lógica. Eu permaneço de pé, que cada mente desperta seja fortaleza e cada pensamento, amém.  
+  </p>    <p class="book-label">Antilucas</p>  
+</div>  
+<div class="antilucas-book">  
+  <h2>CAPÍTULO 2 - ANTIGOD</h2>    <p>  
+    1. Nem que eu ande pelo vale da sombra da morte não temerei cristão algum, porque a lógica estás comigo; a tua lógica e o teu conhecimento me consolam.   
+    2. Preparas-me uma mesa na presença dos meus livros, unges minha cabeça com conhecimento o meu cálice transborda lógica e razão.   
+    3. Certamente que a lógica e a razão todos os dias da minha vida, e habitarei tendo razão para todo sempre amém.  
+  </p>    <p class="book-label">Antilucas</p>  
+</div>  
+<div class="antilucas-book">  
+  <h2>CAPÍTULO 3 - COISAS</h2>    <p>1.</p>  
+  <table class="pascal-table">  
+    <tr>  
+      <h4> APOSTA DE PASCAL</h4>  
+<td>       </td>  
+      <td>DEUS EXISTE</td>  
+      <td>DEUS NÃO EXISTE</td>  
+    </tr>  
+    <tr>  
+      <td>ACREDITO</td>  
+      <td>PARAÍSO</td>  
+      <td>SUAVE</td>  
+    </tr>  
+    <tr>  
+      <td>NÃO ACREDITO</td>  
+      <td>JÁ ERA</td>  
+      <td>PARABÉNS</td>  
+    </tr>  
+  </table>    <p>  
+    2. "E se a gente escolher a religião errada? A cada semana a gente vai deixar Deus mais e mais bravo!!" O certo é a razão não o chute.  3. O inferno não existe. 4. Medo do inferno não é prova de que ele existe, é prova de trauma.  
+
+
+
+5. Tessalonicenses 5:18 "Em tudo dai graças, porque esta é a vontade de Deus em Cristo Jesus para convosco", tenho que dar graças quando alguém morre? Quando sou assaltado ou quando alguém morre?
+
+  </p>    <p class="book-label">Antilucas</p>  
+</div>  
+<div class="antilucas-book">  
+  <h2>CAPÍTULO 4 - REFLEXÃO</h2>    <p>  
+    1. Se do nada perante o nada, diríamos que viemos do barro, mas se esquecem disso viemos das estrelas.  
+    2. Nem santos, nem pecadores, só poeira consciente tentando fazer sentido num universo que não tá nem aí...  
+    3. A fé nunca pagava conta de luz!! "Pois a mentira religiosa tenta te capturar como armadilha mas a verdade é ágil como fogo que devora a palha".  
+  </p>    <p>  
+    4. Se o mundo te empurra pra o medo, responda com lógica.  
+    Se dizem que a vida tem um plano, responda que o plano é o que você cria.  
+    5. Cada "milagre" é coincidência com nome bonito, cada promessa vazia é sombra de ignorância, mas tua consciência é real e ela nunca mente.  
+    6. O infinito não espera tua fé, ele não julga teu pecado ou tua virtude, ele só existe e tu existes junto com ele.  
+	7.ciência acima da crença, razão antes da superstição.  </p>    <p class="book-label">Antilucas</p>  
+</div>  
+<br><br><br>  
+<h1 style="margin:60px 0 30px; font-family: 'Georgia', serif; text-align: center; color: #f0f0f0; text-transform: uppercase; letter-spacing: 8px; border-top: 1px solid #050505; border-bottom: 1px solid #050505; padding: 15px;">  
+  Livro: Sagrado  
+</h1>  
+
+<div class="sagrado-v2-book">  
+  <h2>CAPÍTULO 1 - SAGRADO</h2>    <p>  
+    O triângulo com um círculo no centro — meu chamado artefato plantação — surge nos hieróglifos como um sussurro antigo, um símbolo que respira entre linhas esquecidas.  
+A Esfera de Buga, cinza e flutuante, carregava em seu ventre o artefato, repetido quatro vezes, como se guardasse um segredo que orbitava silenciosamente pelo ar.  
+  </p>    <p class="book-label-sagrado">Sagrado</p>  
+</div>  <div class="sagrado-v2-book">  
+  <h2>CAPÍTULO 2 - GEOMETRIA SAGRADA</h2>    <p>  
+    1. Desde uma molécula mais minúscula até uma galáxia enorme aparecem sempre: círculos, triângulos, espirais, hexágonos, proporções fixas.   
+    2. Conchas seguem espirais logarítmica. Galáxias são espirais, favos de abelha são hexágonos perfeitos.   
+    3. Espiral é tipo o código secreto da natureza: crescimento de plantas, furacões, torção do DNA, formato das galáxias.   
+    4. Proporção áurea — o número que governa tudo. Chamada de PHI (1.618...), é tipo um código da natureza. Rostos humanos, corpos, música, arte, plantas. </p>    <p class="book-label-sagrado">Sagrado</p>  
+</div>  
+<div class="sagrado-v2-book">  
+  <h2>CAPÍTULO 3 - A SEQUÊNCIA 3-6-9 DE TESLA</h2>    <p>  
+“Se você entender o 3, o 6 e o 9, entenderá o universo.”  
+No coração dos números, há ciclos que dançam sozinhos: 1 se transforma em 2, depois em 4, 8, 16, 32… e mesmo quando somamos os dígitos, tudo retorna ao mesmo ritmo — 8, 7, 5, 1… Mas o 3, 6 e 9 permanecem fora da roda, como guardiões de um segredo que a maioria jamais vê.  
+O 9 é eterno. Multiplique-o por qualquer número e ele retorna, silencioso e imutável, lembrando-nos de que há uma ordem invisível que governa até o caos: 9x7=63, 6+3=9; 9x655=5895, 5+8+9+5=27, 2+7=9… e assim segue, sutil e perfeito.  
+Ondas de som cantam em múltiplos de 3, campos eletromagnéticos se dobram em tríades — o cosmos prefere a simetria, o fluxo harmônico que só os números 3, 6 e 9 conhecem.  
+ </p>    <p class="book-label">Sagrado</p>  
+</div>
+    </div>
+    </header>
+  
+      <script>
+        
+      </script>
+    
+  </body>
+    </html>
