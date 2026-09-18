@@ -180,6 +180,20 @@ text-transform: uppercase;
         margin: 40px 0 25px !important;
     }
 	}
+	.a {
+     font-weight: bold;
+        font-size: 12px;
+    color: red;
+    padding: 15px;
+    user-select:none;
+	}
+	.view {
+  display: none;
+}
+
+.active {
+  display: block;
+}
 </style>
 <body>
     <div class="prog-wrap"><div id="prog" class="prog"></div></div>    <header class="hero" id="top">  
@@ -190,7 +204,20 @@ text-transform: uppercase;
 		<br><p style="font-family: 'Creepster', cursive;">para quem escolhe a liberdade de pensar.</p>
 		<p style="font-family: 'Creepster', cursive;">Antilucas 4:7 "ciência acima da crença, razão antes da superstição."</p>
     </div>  <div class="counters" aria-live="polite">  
-    
+      <div id="home" class="view active">
+ 
+    <header class="header">
+    <div class="container header-content">
+      
+        <ul>
+      <nav class="nav">
+           <li> <a class="a" href="#" onclick="show('home')">Home</a></li>
+          <br>
+          <li><a class="a" href="#" onclick="show('pag2')">teologia</a></li>
+      </nav>
+    </div>
+    </ul>
+	</header>
     <h1 style="margin:60px 0 30px; font-family: 'Georgia', serif; text-align: center; color: #f0f0f0; text-transform: uppercase; letter-spacing: 8px; border-top: 1px solid #050505; border-bottom: 1px solid #050505; padding: 15px;">  
   Livro: Antimateus  
 </h1>  
@@ -387,9 +414,25 @@ Ondas de som cantam em múltiplos de 3, campos eletromagnéticos se dobram em tr
 			30. Trabalhai, estudai, amai, pensai e caminhai; não espereis que o céu vos carregue: vós mesmos vos levais. 31. E quando perguntardes “onde está Deus?”, talvez só reste o vazio; talvez seja ausência divina, talvez seja apenas silêncio. 32. Mas enquanto o mundo permanece, e o tempo continua a correr, cabe ao homem pensar — e, pensando, escolher viver.</p>
 
 		</div>
+	  </div>
+		  <div id="pag2" class="view">
+ 
+    <header class="header">
+    <div class="container header-content">
+      
+        <ul>
+      <nav class="nav">
+           <li> <a class="a" href="#" onclick="show('home')">Home</a></li>
+          <br>
+          <li><a class="a" href="#" onclick="show('pag2')">teologia</a></li>
+      </nav>
+    </div>
+    </ul>
+	</header>
     </div>
     </header>
-  
+	<h1>em desenvolvimento by lgh</h1>
+</div>
       <script>
         
       </script>
