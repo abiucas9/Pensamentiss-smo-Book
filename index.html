@@ -434,7 +434,31 @@ Ondas de som cantam em múltiplos de 3, campos eletromagnéticos se dobram em tr
 	<h1>em desenvolvimento by lgh</h1>
 </div>
       <script>
-        
+        const topBtn = document.getElementById("topBtn");
+window.addEventListener("scroll", () => {
+  window.scrollY > 400 ? topBtn.classList.add("show") : topBtn.classList.remove("show")
+});
+topBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+// Animação de reveal ao scrollar a tela
+const reveals = document.querySelectorAll(".reveal");
+function revealOnScroll() {
+  const h = window.innerHeight;
+  reveals.forEach(el => {
+    if (el.getBoundingClientRect().top < h - 80) {
+      el.classList.add("active");
+    }
+  });
+}
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+  function show(page) {
+    document.querySelectorAll('.view').forEach(el => {
+        el.classList.remove('active');
+    });
+
+    document.getElementById(page).classList.add('active');
+		  }
       </script>
     
   </body>
